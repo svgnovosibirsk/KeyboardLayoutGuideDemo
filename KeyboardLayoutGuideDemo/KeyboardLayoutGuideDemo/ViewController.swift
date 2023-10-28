@@ -18,7 +18,7 @@ final class ViewController: UIViewController {
         return view
     }()
     
-    private let pressMeButton = {
+    private let hideKeyboardButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemMint
@@ -36,9 +36,9 @@ final class ViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         view.addSubview(textView)
-        view.addSubview(pressMeButton)
+        view.addSubview(hideKeyboardButton)
         
-        pressMeButton.addTarget(self,
+        hideKeyboardButton.addTarget(self,
                                 action: #selector(buttonDidTap),
                                 for: .touchUpInside)
         
@@ -60,12 +60,15 @@ final class ViewController: UIViewController {
             textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             textView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            textView.bottomAnchor.constraint(equalTo: hideKeyboardButton.topAnchor, constant: -10),
             
-            pressMeButton.widthAnchor.constraint(equalToConstant: 300),
-            pressMeButton.heightAnchor.constraint(equalToConstant: 50),
-            pressMeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pressMeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            hideKeyboardButton.widthAnchor.constraint(equalToConstant: 300),
+            hideKeyboardButton.heightAnchor.constraint(equalToConstant: 50),
+            hideKeyboardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            //hideKeyboardButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            // MARK: - KeyboardLayoutGuide
+            hideKeyboardButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10),
         ])
     }
 }
